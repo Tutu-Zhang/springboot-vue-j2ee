@@ -31,12 +31,11 @@ public class TransportController {
         return Result.success(TransportPage);
     }
 
-    @GetMapping("/receipt/{number}")
-    public Result<?> loadReceipt(@PathVariable String number){
+    @GetMapping("/receipt/{id}")
+    public Result<?> loadReceipt(@PathVariable Long id){
         LambdaQueryWrapper<Transport> wrapper=Wrappers.<Transport>lambdaQuery();
 
-        wrapper.eq(Transport::getReceiver,number);
-
+        wrapper.eq(Transport::getReceiverId,id);
         Page<Transport> TransportPage = transportMapper.selectPage(new Page<>(1,10), wrapper);
         return Result.success(TransportPage);
     }

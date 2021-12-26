@@ -28,7 +28,7 @@
 
         <el-table-column fixed="right" label="操作" width="300">
           <template #default="scope">
-            <el-button @click="handleChoose(scope.row)" type="primary">选择运车</el-button>
+            <el-button @click="handleChoose(scope.row)" type="primary" v-show="scope.row.cargoSituation == '已发货'">选择运车</el-button>
             <el-button @click="handleEdit(scope.row)" type="info">编辑</el-button>
             <el-popconfirm title="确定删除？" @confirm="handleDelete(scope.row.id)">
               <template #reference>
@@ -201,7 +201,7 @@ export default {
       this.form.vehicleInfo ="";
       this.save();
     },
-    confirmAvailable(row){
+    confirmAvailable(){
       if(this.form.vehicleId == 0){
         return true;
       }

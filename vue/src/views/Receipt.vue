@@ -98,7 +98,7 @@ export default {
     },
 
     load(){
-      request.get("/transport/receipt/" + JSON.parse(sessionStorage.getItem("user")).receiver
+      request.get("/transport/receipt/" + JSON.parse(sessionStorage.getItem("user")).id
       ).then(res=>{
         console.log(res);
         this.tableData = res.data.records;
