@@ -1,9 +1,11 @@
 <template>
   <div>
     <div style="width: 50%; float: left">
-      <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.juimg.com%2F170323%2F330747-1F32322432787.jpg&refer=http%3A%2F%2Fimg1.juimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642666109&t=21001a790900150676098c3d83af2533" width="800" height="800" >
+      <img src="../../public/phone.png"  width="600" height="600" style="text-align: center; margin: 80px">
     </div>
-    <div style="width: 50%; height: 100vh;background-color: white ;overflow: hidden">
+
+    <el-card style="width: 600px;text-align: right;margin: 40px; overflow: hidden;height: 90vh;background-color: aliceblue">
+    <div style="width: 100%; height: 100vh;overflow: hidden">
       <div style="width: 400px;margin: 120px auto">
         <div style="color: black;font-size: 30px;text-align: left;padding-bottom: 30px;font-weight: bolder">注册</div>
         <el-form
@@ -26,11 +28,12 @@
             <el-button type="primary" style="width: 100%" @click="register">注册</el-button>
           </el-form-item>
           <el-form-item>
-            <el-button @click="$router.push('/login')" type="text" style="width: 0%">已有账号?去登陆</el-button>
+            <el-button @click="$router.push('/login')" type="text" style="width: 100%">已有账号?去登陆</el-button>
           </el-form-item>
         </el-form>
       </div>
     </div>
+    </el-card>
   </div>
 </template>
 
