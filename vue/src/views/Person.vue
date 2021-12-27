@@ -23,7 +23,9 @@
           <el-input v-model="form.age"></el-input>
         </el-form-item>
         <el-form-item label="性别">
-          <el-input v-model="form.sex"></el-input>
+          <el-radio v-model="form.sex" label="男">男</el-radio>
+          <el-radio v-model="form.sex" label="女">女</el-radio>
+          <el-radio v-model="form.sex" label="秀吉">秀吉</el-radio>
         </el-form-item>
         <el-form-item label="地址">
           <el-input v-model="form.address"></el-input>

@@ -11,7 +11,7 @@
         <el-form-item label="发件人地址" prop="senderAddress">
           <el-input v-model="form.senderAddress " style="width: 90%"></el-input>
         </el-form-item>
-        <el-form-item label="发件人联系方式">
+        <el-form-item label="发件人联系方式" prop="senderNum">
           <el-input v-model="form.senderNum " style="width: 90%"></el-input>
         </el-form-item>
 
@@ -33,7 +33,7 @@
         </el-form-item>
       </el-form>
       <div style="text-align: center">
-        <el-button type="primary" @click="save">保存</el-button>
+        <el-button type="primary" @click="save">提交</el-button>
       </div>
     </el-card>
 
@@ -50,6 +50,7 @@ export default {
       form: {},
       rules: {
         senderAddress:[{trigger:'blur',required:true, message:'请输入发件人地址'}],
+        senderNum:[{trigger:'blur',required:true, message:'请输入发件人联系方式'}],
         receiver: [{trigger: 'blur' , required:true, message:'请输入收件人'}],
         receiverAddress: [{trigger: 'blur' , required:true, message:'请输入收件人地址'}],
         receiverNum: [{trigger: 'blur' , required:true, message:'请输入收件人联系方式'}],
@@ -62,6 +63,7 @@ export default {
     this.form.sender = JSON.parse(str).nickName
     this.form.senderNum = JSON.parse(str).number
     this.form.senderId = JSON.parse(str).id
+    this.form.senderAddress = JSON.parse(str).address
   },
   methods: {
     save() {

@@ -25,17 +25,27 @@ public class TransportController {
                               @RequestParam(defaultValue = "") String search){
         LambdaQueryWrapper<Transport> wrapper=Wrappers.<Transport>lambdaQuery();
         if(StrUtil.isNotBlank(search)){
-            wrapper.like(Transport::getCargoInfo,search);
+            wrapper.like(Transport::getCargoInfo,search).or().
+                    like(Transport::getReceiver,search).or().
+                    like(Transport::getSender,search).or().
+                    like(Transport::getSenderNum,search).or().
+                    like(Transport::getReceiverNum,search).or().
+                    like(Transport::getReceiverAddress,search).or().
+                    like(Transport::getSenderAddress,search).or().
+                    like(Transport::getCargoSituation,search).or().
+                    like(Transport::getCargoPosition,search).or().
+                    like(Transport::getVehicleInfo,search);
         }
         Page<Transport> TransportPage = transportMapper.selectPage(new Page<>(pageNum,pageSize), wrapper);
         return Result.success(TransportPage);
     }
 
-    @GetMapping("/receipt/{id}")
-    public Result<?> loadReceipt(@PathVariable Long id){
+    @GetMapping("/receipt/{id}/{username}/{number}")
+    public Result<?> loadReceipt(@PathVariable(name = "id") Long id,@PathVariable(name = "username") String username,@PathVariable(name = "number") String number){
         LambdaQueryWrapper<Transport> wrapper=Wrappers.<Transport>lambdaQuery();
 
-        wrapper.eq(Transport::getReceiverId,id);
+        wrapper.eq(Transport::getReceiver,username).eq(Transport::getReceiverNum,number);
+        wrapper.or().eq(Transport::getReceiverId,id);
         Page<Transport> TransportPage = transportMapper.selectPage(new Page<>(1,10), wrapper);
         return Result.success(TransportPage);
     }
@@ -43,7 +53,6 @@ public class TransportController {
     @GetMapping("/shipment/{id}")
     public Result<?> loadShipment(@PathVariable Integer id){
         LambdaQueryWrapper<Transport> wrapper=Wrappers.<Transport>lambdaQuery();
-
         wrapper.eq(Transport::getSenderId,id);
 
         Page<Transport> TransportPage = transportMapper.selectPage(new Page<>(1,10), wrapper);

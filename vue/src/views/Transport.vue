@@ -55,10 +55,10 @@
           <el-form label-width="120px" v-bind:model="form">
 
             <el-form-item label="发件人">
-              <el-input v-model="form.sender " style="width: 80%"></el-input>
+              <el-input v-model="form.sender " style="width: 80%" disabled></el-input>
             </el-form-item>
             <el-form-item label="发件人id">
-              <el-input v-model="form.senderId " style="width: 80%"></el-input>
+              <el-input v-model="form.senderId " style="width: 80%" disabled></el-input>
             </el-form-item>
             <el-form-item label="发件人地址">
               <el-input v-model="form.senderAddress " style="width: 80%"></el-input>
@@ -87,7 +87,9 @@
               <el-input v-model="form.cargoWeight " style="width: 80%"></el-input>
             </el-form-item>
             <el-form-item label="货物状态">
-              <el-input v-model="form.cargoSituation " style="width: 80%"></el-input>
+              <el-radio v-model="form.cargoSituation" label="未发货">未发货</el-radio>
+              <el-radio v-model="form.cargoSituation" label="已发货">已发货</el-radio>
+              <el-radio v-model="form.cargoSituation" label="已收货">已收货</el-radio>
             </el-form-item>
             <el-form-item label="货物位置">
               <el-input v-model="form.cargoPosition" style="width: 80%"></el-input>
@@ -250,6 +252,8 @@ export default {
               type:"success",
               message:"修改成功"
             })
+            this.load()//刷新数据
+            this.dialogVisible=false;
           }
           else{
             ElMessage({
@@ -258,8 +262,6 @@ export default {
             })
           }
         });
-        this.load()//刷新数据
-        this.dialogVisible=false;
       }
       else{
         request.post("/transport",this.form).then(res => {
@@ -269,6 +271,8 @@ export default {
               type:"success",
               message:"新增成功"
             })
+            this.load()//刷新数据
+            this.dialogVisible=false;
           }
           else{
             ElMessage({
@@ -277,8 +281,7 @@ export default {
             })
           }
         })
-        this.load()//刷新数据
-        this.dialogVisible=false;
+
       }
     },
     handleEdit(row) {
