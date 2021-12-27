@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="background-color: #8c939d;">
     <el-menu
-        style="width: 200px; min-height: calc(100vh - 50px)"
+        style="width: 200px; min-height: calc(100vh - 50px);background-color: aliceblue;"
         :default-active="path"
         router
         class="el-menu-vertical-demo"

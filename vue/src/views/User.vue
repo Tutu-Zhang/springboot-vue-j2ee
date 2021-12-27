@@ -3,8 +3,6 @@
     <!--    功能区-->
     <div style="margin: 10px 10px">
       <el-button @click="add" type="primary" style="margin-right: 20px;margin-top: 0px;margin-bottom: 0px">新增</el-button>
-      <el-button type="primary" style="margin-right: 20px;margin-top: 0px;margin-bottom: 0px">导入</el-button>
-      <el-button type="primary" style="margin-right: 20px;margin-top: 0px;margin-bottom: 0px">导出</el-button>
     </div>
     <!--    搜索区-->
     <div style="margin: 10px 0;">
@@ -47,6 +45,9 @@
 
       <el-dialog v-model="dialogVisible" title="新增用户" width="30%">
         <el-form label-width="120px" v-bind:model="form">
+          <el-form-item label="用户名">
+            <el-input v-model="form.username " style="width: 80%"></el-input>
+          </el-form-item>
           <el-form-item label="昵称">
             <el-input v-model="form.nickName " style="width: 80%"></el-input>
           </el-form-item>
@@ -132,6 +133,8 @@ export default {
                 type:"success",
                 message:"修改成功"
               })
+            this.load()//刷新数据
+            this.dialogVisible=false;
           }
           else{
             ElMessage({
@@ -140,8 +143,7 @@ export default {
             })
           }
         });
-        this.load()//刷新数据
-        this.dialogVisible=false;
+
       }
       else{
         request.post("/user",this.form).then(res => {
@@ -151,6 +153,8 @@ export default {
               type:"success",
               message:"新增成功"
             })
+            this.load()//刷新数据
+            this.dialogVisible=false;
           }
           else{
             ElMessage({
@@ -159,8 +163,7 @@ export default {
             })
           }
         })
-        this.load()//刷新数据
-        this.dialogVisible=false;
+
       }
       },
     handleEdit(row) {

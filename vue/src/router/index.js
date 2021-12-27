@@ -16,7 +16,6 @@ const routes = [
     path: '/',
     name: 'Layout',
     component: Layout,
-    redirect:"/person",
     children:[
       {
         path:'/user',
